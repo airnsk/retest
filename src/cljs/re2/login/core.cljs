@@ -9,15 +9,6 @@
 
 
 
-
-
-
-(re-frame/dispatch [:initialize-db/login])
-(println "dblogin dispatched")
-
-
-
-
 (comment
 (use 'figwheel-sidecar.repl-api )
 ; (start-figwheel! figwheel-config)

@@ -6,4 +6,3 @@
  :initialize-db/main
  (fn  [rootdb _]
    (assoc rootdb :maindb db/default-db)))
-(println "main event reged")

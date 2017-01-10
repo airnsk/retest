@@ -6,4 +6,3 @@
  :initialize-db/login
  (fn  [rootdb _]
    (assoc rootdb :logindb db/default-db)))
-(println "login event reged")
