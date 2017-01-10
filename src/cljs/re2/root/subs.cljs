@@ -1,4 +1,4 @@
-(ns re2.subs
+(ns re2.root.subs
     (:require-macros [reagent.ratom :refer [reaction]])
     (:require [re-frame.core :as re-frame]))
 

@@ -1,11 +1,11 @@
-(ns re2.views
+(ns re2.main.views
     (:require [re-frame.core :as re-frame]
               [reagent.core :as reagent :refer [atom]]
               [cljsjs.material-ui]
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.table :as vkotable]))
+              [re2.shared.components.table :as vkotable]))
 
 
 

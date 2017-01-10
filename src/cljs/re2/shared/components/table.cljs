@@ -1,4 +1,4 @@
-(ns re2.table
+(ns re2.shared.components.table
     (:require
               [cljsjs.material-ui]
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
