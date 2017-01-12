@@ -27,7 +27,7 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.8.2"]
-                    [binaryage/dirac "0.8.8"]
+
                     [re-frisk "0.3.2"]
                     [com.cemerick/piggieback "0.2.1"]
                     [figwheel-sidecar "0.5.8"]
@@ -47,7 +47,7 @@
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true
                     :preloads             [devtools.preload
-                                          dirac.runtime.preload]
+                                          ]
                     :external-config      {:devtools/config {:features-to-install :all}}
                     }}
 

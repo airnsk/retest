@@ -3,6 +3,6 @@
     (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- :login
+ :login/login
  (fn [db]
    (:login db)))

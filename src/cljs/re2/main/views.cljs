@@ -5,7 +5,8 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.shared.components.table :as vkotable]))
+              [re2.shared.components.table :as vkotable]
+))
 
 
 
@@ -77,10 +78,10 @@
     [ui/raised-button {:label        "Click me"
                         :icon         (ic/social-group)
                         :secondary false
-                        :on-touch-tap #(println "clicked")}]]]])
+                        :on-touch-tap #(re-frame/dispatch [:login/http-login])}]]]])
 
 (defn main-panel []
-  (let [name (re-frame/subscribe [:name])]
+  (let [name (re-frame/subscribe [:root/name])]
     (fn []
       [:div "Hello from " @name
       [:div [template-page]]]

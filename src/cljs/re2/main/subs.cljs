@@ -3,6 +3,6 @@
     (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- :maintab
+ :main/maintab
  (fn [db]
    (:maintab db)))

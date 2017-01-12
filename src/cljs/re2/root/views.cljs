@@ -78,10 +78,10 @@
     [ui/raised-button {:label        "Click me"
                         :icon         (ic/social-group)
                         :secondary false
-                        :on-touch-tap #(re-frame/dispatch [:http-login])}]]]])
+                        :on-touch-tap #(re-frame/dispatch [:login/http-login])}]]]])
 
 (defn main-panel []
-  (let [name (re-frame/subscribe [:name])]
+  (let [name (re-frame/subscribe [:root/name])]
     (fn []
       [:div "Hello from " @name
       [:div [template-page]]]

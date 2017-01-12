@@ -3,4 +3,6 @@
 (def default-db
   {:name "re-frame"
   :clicks 0
-  :loading? false})
+  :loading? false
+  :login false
+  :active-panel :login-panel})

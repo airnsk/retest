@@ -12,7 +12,7 @@
 (defn login-page []
  [:div [:h2 "please login"]
   [:div [:a {:href "#"
-            ;;:on-click #(reset! userauth true)
+            :on-click #(re-frame/dispatch [:login/login true])
   } "login"]]])
 
 
@@ -43,45 +43,9 @@
 
 
 
-
-(defn template-page []
-
-  [:div
-  [ui/mui-theme-provider
-   {:mui-theme (get-mui-theme
-                 {:palette {:text-color (color :black)
-                          :primary1-color (color :pinkA200)
-                          :accent1-color (color :green600) }})}
-   [:div
-    [ui/app-bar {:title "ПОЧТА" :style {:margin-bottom 15}
-                  :icon-element-right
-                   (reagent/as-element [ui/icon-button
-                                    (ic/action-account-balance-wallet)])}
-                                    ]
-    [ui/paper {:style { :display "inline-block" :float "left" :margin-right 50 }}
-      [ui/list
-      [ui/list-item {:primaryText "Все" :left-icon (ic/content-inbox)}]
-      [ui/list-item {:primaryText "Входящие" :left-icon (ic/content-mail)}]
-      [ui/list-item {:primaryText "Исходящие" :left-icon (ic/content-send)}]
-      [ui/list-item {:primaryText "Черновики" :left-icon (ic/content-drafts)}]
-      [ui/list-item {:primaryText "Корзина" :left-icon (ic/content-delete-sweep)}]
-      ]
-    ]
-    [:div {:style {}}
-    vkotable/vtable                ]
-    [:div "Hello"]
-    [ui/mui-theme-provider
-     {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)}})}
-     [ui/raised-button {:label "Blue button"}]]
-    (ic/action-home {:color (color :grey600)})
-    [ui/raised-button {:label        "Click me"
-                        :icon         (ic/social-group)
-                        :secondary false
-                        :on-touch-tap #(println "clicked")}]]]])
-
-(defn main-panel []
-  (let [name (re-frame/subscribe [:name])]
+(defn login-panel []
+  (let [name (re-frame/subscribe [:root/name])]
     (fn []
       [:div "Hello from " @name
-      [:div [template-page]]]
+      [:div [login-page]]]
       )))

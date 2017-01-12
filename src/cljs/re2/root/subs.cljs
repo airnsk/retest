@@ -3,6 +3,12 @@
     (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- :name
+ :root/name
  (fn [db]
    (:name db)))
+
+
+(re-frame/reg-sub
+  :root/active-panel
+  (fn [db]
+    (:active-panel db)))

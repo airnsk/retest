@@ -1,4 +1,6 @@
 /*.log
+/*.nrepl-port
+config.cljs
 /target
 /*-init.clj
 /resources/public/js/compiled
