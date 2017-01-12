@@ -4,10 +4,9 @@
                  [cljs-react-material-ui "0.2.30"]
                  [reagent "0.6.0" :exclusions [cljsjs/react]]
                  [re-frame "0.9.1"]
-                 [re-frisk "0.3.2"]
-                 [com.cemerick/piggieback "0.2.1"]
-                 [figwheel-sidecar "0.5.8"]
-                 [proto-repl "0.3.1"]]
+                 [cljs-ajax "0.5.8"]
+                 [day8.re-frame/http-fx "0.1.3"]
+                 ]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
 
@@ -18,11 +17,21 @@
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
   :figwheel {:css-dirs ["resources/public/css"]
-            :nrepl-port 7777}
+            :nrepl-port 7777
+        }
+
+
+
+
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.8.2"]]
+   {:dependencies [[binaryage/devtools "0.8.2"]
+                    [binaryage/dirac "0.8.8"]
+                    [re-frisk "0.3.2"]
+                    [com.cemerick/piggieback "0.2.1"]
+                    [figwheel-sidecar "0.5.8"]
+                    [proto-repl "0.3.1"]]
 
     :plugins      [[lein-figwheel "0.5.8"]]
     }}
@@ -37,7 +46,8 @@
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true
-                    :preloads             [devtools.preload]
+                    :preloads             [devtools.preload
+                                          dirac.runtime.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
                     }}
 

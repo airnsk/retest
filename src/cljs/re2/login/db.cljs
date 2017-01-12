@@ -2,4 +2,5 @@
 
 (def default-db
   {:login "none"
+   :login-data ""
   })

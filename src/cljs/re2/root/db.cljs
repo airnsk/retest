@@ -2,4 +2,5 @@
 
 (def default-db
   {:name "re-frame"
-  :clicks 0})
+  :clicks 0
+  :loading? false})

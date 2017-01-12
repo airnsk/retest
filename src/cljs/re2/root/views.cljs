@@ -78,7 +78,7 @@
     [ui/raised-button {:label        "Click me"
                         :icon         (ic/social-group)
                         :secondary false
-                        :on-touch-tap #(println "clicked")}]]]])
+                        :on-touch-tap #(re-frame/dispatch [:http-login])}]]]])
 
 (defn main-panel []
   (let [name (re-frame/subscribe [:name])]
