@@ -9,10 +9,7 @@
               [re2.login.core :as login-core]
               [re2.main.core :as main-core]
               [re2.main.views :as main-views]
-              [re2.login.views :as login-views]
-            ))
-
-
+              [re2.login.views :as login-views]))
 
 
 (comment
@@ -21,17 +18,9 @@
 (cljs-repl)
 )
 
+
 (defn check-auth []
-
-
-  (re-frame/dispatch [:login/login true ])
-
-
-
-
-
-
-  )
+  (re-frame/dispatch [:login/login true ]))
 
 
 (defn dev-setup []
@@ -39,8 +28,6 @@
     (enable-console-print!)
     (enable-re-frisk!)
     (println "dev mode")))
-
-
 
 
 (defn high-level-view
@@ -54,9 +41,6 @@
          :main-panel   [main-views/main-panel])])))
 
 
-
-
-
  (defn check-s []
         (let [check (re-frame/subscribe [:root/active-panel])]
              (println @check)))
@@ -67,14 +51,12 @@
   (reagent/render [high-level-view]
                   (.getElementById js/document "app")))
 
+
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db/root ])
   (re-frame/dispatch [:initialize-db/login ])
   (re-frame/dispatch [:initialize-db/main ])
   (dev-setup)
   (check-auth)
-
   (mount-root)
-
-  (reagent/track! check-s)
-  )
+  (reagent/track! check-s))

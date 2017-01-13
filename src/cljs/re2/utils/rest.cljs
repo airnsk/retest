@@ -2,6 +2,4 @@
     (:require [reagent.core :as reagent]
               [re-frame.core :as re-frame]
               [ajax.core :as ajax]
-              [day8.re-frame.http-fx]
-
-            ))
+              [day8.re-frame.http-fx]))

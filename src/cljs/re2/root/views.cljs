@@ -5,8 +5,7 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.shared.components.table :as vkotable]
-))
+              [re2.shared.components.table :as vkotable]))
 
 
 
@@ -15,8 +14,6 @@
   [:div [:a {:href "#"
             ;;:on-click #(reset! userauth true)
   } "login"]]])
-
-
 
 
 (defn home-page []
@@ -31,6 +28,7 @@
    [:div [:a {:href "/about"} "go to about page"]]
    [:div [:a {:href "/list"} "go to list page"]]])
 
+
 (defn about-page []
   [:div [:h2 "About vko1"]
   [ui/mui-theme-provider
@@ -38,15 +36,13 @@
    [ui/raised-button {:label "Blue button"}]]
    [:div [:a {:href "/"} "go to the home page"]]])
 
+
 (defn list-mail-page []
  [:div [:h2 "list-mail-page vko1"]
   [:div [:a {:href "/"} "go to the home page"]]])
 
 
-
-
 (defn template-page []
-
   [:div
   [ui/mui-theme-provider
    {:mui-theme (get-mui-theme
@@ -69,7 +65,7 @@
       ]
     ]
     [:div {:style {}}
-    vkotable/vtable                ]
+    vkotable/vtable ]
     [:div "Hello"]
     [ui/mui-theme-provider
      {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)}})}
@@ -79,6 +75,7 @@
                         :icon         (ic/social-group)
                         :secondary false
                         :on-touch-tap #(re-frame/dispatch [:login/http-login])}]]]])
+
 
 (defn main-panel []
   (let [name (re-frame/subscribe [:root/name])]

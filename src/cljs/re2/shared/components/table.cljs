@@ -4,12 +4,10 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [reagent.core :as reagent :refer [atom]]
-              ))
+              [reagent.core :as reagent :refer [atom]]))
 
 
 (comment (
-
 primary1Color cyan500,
 primary2Color cyan700,
 primary3Color grey400,
@@ -25,8 +23,8 @@ disabledColor fade(darkBlack, 0.3),
 pickerHeaderColor cyan500,
 clockCircleColor fade(darkBlack, 0.07),
 shadowColor fullBlack)
-
 )
+
 
 (def vtable
 [:div {:style {:padding "10px" } }
@@ -45,7 +43,7 @@ shadowColor fullBlack)
 
     ]
     [ui/table-row
-    [ui/table-row-column [:a {:href "/" } "33dsfsdhfgsjfgjsghdjhsjdsgh"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/" } "test href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
 

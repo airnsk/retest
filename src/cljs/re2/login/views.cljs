@@ -8,14 +8,11 @@
               [re2.shared.components.table :as vkotable]))
 
 
-
 (defn login-page []
  [:div [:h2 "please login"]
   [:div [:a {:href "#"
             :on-click #(re-frame/dispatch [:login/login true])
   } "login"]]])
-
-
 
 
 (defn home-page []
@@ -30,6 +27,7 @@
    [:div [:a {:href "/about"} "go to about page"]]
    [:div [:a {:href "/list"} "go to list page"]]])
 
+
 (defn about-page []
   [:div [:h2 "About vko1"]
   [ui/mui-theme-provider
@@ -37,10 +35,10 @@
    [ui/raised-button {:label "Blue button"}]]
    [:div [:a {:href "/"} "go to the home page"]]])
 
+
 (defn list-mail-page []
  [:div [:h2 "list-mail-page vko1"]
   [:div [:a {:href "/"} "go to the home page"]]])
-
 
 
 (defn login-panel []
