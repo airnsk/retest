@@ -6,6 +6,22 @@ A [re-frame](https://github.com/Day8/re-frame) application designed to ... well,
 
 ### Run application:
 
+create file src/cljs/re2/config.cljs
+
+(ns re2.config)
+
+(def debug?
+  ^boolean js/goog.DEBUG)
+
+(def uri "https://test.url")
+
+(def login "login")
+(def password "password")
+
+
+
+
+
 ```
 lein clean
 lein figwheel dev
