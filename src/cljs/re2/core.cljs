@@ -2,6 +2,8 @@
     (:require [reagent.core :as reagent]
               [re-frame.core :as re-frame]
               [re-frisk.core :refer [enable-re-frisk!]]
+              [secretary.core :as secretary :include-macros true]
+              [accountant.core :as accountant]
               [re2.root.events]
               [re2.root.subs]
               [re2.root.views :as root-views]
@@ -17,6 +19,15 @@
 ; (start-figwheel! figwheel-config)
 (cljs-repl)
 )
+
+(secretary/defroute "/main" []
+  (re-frame/dispatch [:root/set-panel :main-panel]))
+
+(secretary/defroute "/login" []
+  (re-frame/dispatch [:root/set-panel :login-panel]))
+
+
+
 
 
 (defn check-auth []
@@ -58,5 +69,7 @@
   (re-frame/dispatch [:initialize-db/main ])
   (dev-setup)
   (check-auth)
+  (accountant/configure-navigation!)
+  (accountant/dispatch-current!)
   (mount-root)
   (reagent/track! check-s))

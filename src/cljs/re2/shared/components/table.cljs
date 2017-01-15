@@ -43,18 +43,15 @@ shadowColor fullBlack)
 
     ]
     [ui/table-row
-    [ui/table-row-column [:a {:href "/" } "test href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
-
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/login" } "login href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
     [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/main" } "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
+
+
     [ui/table-row
     [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
 

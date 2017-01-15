@@ -7,3 +7,10 @@
  :initialize-db/root
  (fn  [_ _]
    db/default-db))
+
+
+(re-frame/reg-event-fx
+  :root/set-panel
+  (fn [{db :db} [_ panel]]
+
+      {:db  (assoc db :active-panel panel) }))
