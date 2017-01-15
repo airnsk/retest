@@ -19,8 +19,8 @@
    [ui/mui-theme-provider mui
    [:div [:h2 "please login"]
    [:form
-  [ui/text-field {:id "login" :default-value "login"}]
-  [ui/text-field {:id "password" :default-value "password"}]
+  [ui/text-field {:id "login"  :floatingLabelText "login"}]
+  [ui/text-field {:id "password"  :floatingLabelText "password"}]
   [ui/raised-button {:label "Войти" :secondary true
 
                       :on-touch-tap #(re-frame/dispatch [:http-login])}]]]]])
