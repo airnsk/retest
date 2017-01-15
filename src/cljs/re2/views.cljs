@@ -1,4 +1,4 @@
-(ns re2.main.views
+(ns re2.views
     (:require [re-frame.core :as re-frame]
               [reagent.core :as reagent :refer [atom]]
               [cljsjs.material-ui]
@@ -8,19 +8,27 @@
               [re2.shared.components.table :as vkotable]))
 
 
-(defn login-page []
- [:div [:h2 "please login"]
-  [:div [:a {:href "#"
-            ;;:on-click #(reset! userauth true)
-  } "login"]]])
+(def mui
+  {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)
+                                         :primary1-color (color :deep-orange-a100)
+                                         :secondary1-color (color :blue200) }})})
+
+(defn login-view []
+
+[:div
+   [ui/mui-theme-provider mui
+   [:div [:h2 "please login"]
+   [:form
+  [ui/text-field {:id "login" :default-value "login"}]
+  [ui/text-field {:id "password" :default-value "password"}]
+  [ui/raised-button {:label "Войти" :secondary true
+
+                      :on-touch-tap #(re-frame/dispatch [:http-login])}]]]]])
 
 
 (defn home-page []
   [:div [:h2 "Welcome to vko111177"]
-  [ui/mui-theme-provider
-   {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)
-                                          :primary1-color (color :deep-orange-a100)
-                                          :secondary1-color (color :blue200) }})}
+  [ui/mui-theme-provider mui
    [ui/raised-button {:label "Blue button" :secondary true
                       ;;:on-touch-tap #(reset! userauth true)
                       } ]]
@@ -52,8 +60,9 @@
     [ui/app-bar {:title "ПОЧТА" :style {:margin-bottom 15}
                   :icon-element-right
                    (reagent/as-element [ui/icon-button
-                                    (ic/action-account-balance-wallet)])}
-                                    ]
+                                     {:on-touch-tap #(re-frame/dispatch [:http-logout])}
+                                      (ic/action-account-balance-wallet)
+                                      ])}]
     [ui/paper {:style { :display "inline-block" :float "left" :margin-right 50 }}
       [ui/list
       [ui/list-item {:primaryText "Все" :left-icon (ic/content-inbox)}]
@@ -73,12 +82,13 @@
     [ui/raised-button {:label        "Click me"
                         :icon         (ic/social-group)
                         :secondary false
-                        :on-touch-tap #(re-frame/dispatch [:login/http-login])}]]]])
+                        :on-touch-tap #(re-frame/dispatch [:http-login])}]]]])
 
 
-(defn main-panel []
-  (let [name (re-frame/subscribe [:root/name])]
-    (fn []
+(defn main-view []
+
+  (let [name (re-frame/subscribe [:name])]
+
       [:div "Hello from " @name
       [:div [template-page]]]
-      )))
+      ))

@@ -47,7 +47,7 @@ shadowColor fullBlack)
 
     ]
     [ui/table-row
-    [ui/table-row-column [:a {:href "/main" } "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/" } "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
 

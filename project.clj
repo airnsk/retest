@@ -3,7 +3,7 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [cljs-react-material-ui "0.2.30"]
                  [reagent "0.6.0" :exclusions [cljsjs/react]]
-                 [reagent-utils "0.1.7"]
+                 [reagent-utils "0.2.0"]
                  [re-frame "0.9.1"]
                  [cljs-ajax "0.5.8"]
                  [day8.re-frame/http-fx "0.1.3"]
