@@ -17,5 +17,6 @@
       (println (str " now" @page ))
       (condp = @page
           :main-panel [views/main-view]
-          :login-panel [views/login-view]
+          :login-panel [views/login-view "Vasya"]
+          :logout-panel [views/login-view]
           ))))

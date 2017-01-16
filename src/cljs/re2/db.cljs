@@ -7,4 +7,5 @@
   :login false
   :active-panel :login-panel
   :maintab "documents"
-  :logindb {:login-data ""}})
+  :logindb {:login-data ""}
+  :Vasya ""})

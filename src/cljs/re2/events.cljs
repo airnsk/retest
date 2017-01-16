@@ -16,9 +16,23 @@
 (re-frame/reg-fx
  :set-page
  (fn [page]
-      (println (str "page====" page));; we don't bother with that nil value
+      ;; we don't bother with that nil value
     (accountant/navigate! page)))
 
+(re-frame/reg-fx
+ :GryaznyVanya
+ (fn [page]
+      ;; we don't bother with that nil value
+    (js/console.log "Vanya rules")))
+
+
+
+(re-frame/reg-event-fx
+ :Vanya
+ (fn [{db :db} _]
+      ;; we don't bother with that nil value
+      {:db  (assoc db :maintab "Vanya") }
+    ))
 
 
 (re-frame/reg-event-fx

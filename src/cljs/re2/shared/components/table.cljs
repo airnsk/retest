@@ -1,9 +1,10 @@
-(ns re2.shared.components.table
+(ns re2.shared.component.table
     (:require
               [cljsjs.material-ui]
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
+              [re-frame.core :as re-frame]
               [reagent.core :as reagent :refer [atom]]))
 
 
@@ -26,7 +27,10 @@ shadowColor fullBlack)
 )
 
 
-(def vtable
+(defn vtable []
+
+(let [maintab (re-frame/subscribe [:maintab])]
+
 [:div {:style {:padding "10px" } }
 [ui/table {:style {  } :selectable false }
   [ui/table-header {:displaySelectAll false  :adjustForCheckbox false }
@@ -43,20 +47,21 @@ shadowColor fullBlack)
 
     ]
     [ui/table-row
-    [ui/table-row-column [:a {:href "/login" } "login href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/login" } "login href"] ] [ui/table-row-column @maintab] [ui/table-row-column "1"]
 
     ]
     [ui/table-row
-    [ui/table-row-column [:a {:href "/" } "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
+    [ui/table-row-column [:a {:href "/"
+                              :onClick #(re-frame/dispatch [:Vanya])} "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
 
 
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
     [ui/table-row
     [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
-    ]]]] )
+    ]
+    [ui/table-row
+    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
+
+    ]]]] ))

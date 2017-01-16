@@ -7,16 +7,16 @@
               [re2.subs]
               [re2.utils :as utils]
               [re2.controllers :as controllers]
-              [re2.layout :as layout] ))
+              [re2.layout :as layout]
+               ))
 
 
 
 
 (secretary/defroute "/" []
-    (controllers/main-page))
+  (controllers/main-page))
 
 (secretary/defroute "/login" []
-(println "login page")
   (controllers/login-page))
 
 (defn mount-root []

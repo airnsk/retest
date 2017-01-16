@@ -5,7 +5,8 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.shared.components.table :as vkotable]))
+              [re2.shared.component.table :as vkotable]
+              ))
 
 
 (def mui
@@ -13,15 +14,16 @@
                                          :primary1-color (color :deep-orange-a100)
                                          :secondary1-color (color :blue200) }})})
 
-(defn login-view []
+(defn login-view [url]
 
 [:div
+  [:p url]
    [ui/mui-theme-provider mui
    [ui/paper {:style {:width 650 :margin 20 :padding 20}
               :zDepth 3}
    [:div [:h2 "please login"]
    [:form
-  [ui/text-field {:id "login"  :floatingLabelText "login"}]
+  [ui/text-field {:id "login" :hintText "dfgdfg" :floatingLabelText "login"}]
   [ui/text-field {:id "password"  :floatingLabelText "password"}]
   [ui/raised-button {:label "Войти" :secondary true
 
@@ -75,7 +77,7 @@
       ]
     ]
     [:div {:style {}}
-    vkotable/vtable                ]
+    [vkotable/vtable] ]
     [:div "Hello"]
     [ui/mui-theme-provider
      {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)}})}
