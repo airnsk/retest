@@ -4,6 +4,9 @@
               [re2.config :as config]))
 
 
+(def uri "https://integrationb2b.iitrust.ru/edi")
+(def url_documents "https://integrationb2b.iitrust.ru/edi/documents")
+
 (comment
 (use 'figwheel-sidecar.repl-api )
 ; (start-figwheel! figwheel-config)

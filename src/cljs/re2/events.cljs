@@ -4,6 +4,7 @@
               [re2.db :as db]
               [re2.config :as config]
               [ajax.core :as ajax]
+              [re2.utils :as utils]
               [day8.re-frame.http-fx]))
 
 
@@ -56,7 +57,7 @@
  (fn [{db :db} _]
      {:http-xhrio {:method          :post
                    :params          {:login config/login :password config/password}
-                   :uri             (str config/uri "/account/login")
+                   :uri             (str utils/uri "/account/login")
                    :format          (ajax/url-request-format)
                    :response-format (ajax/json-response-format {:keywords? true})
                    :on-success      [:login-data]
