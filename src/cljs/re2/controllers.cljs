@@ -26,4 +26,4 @@
   (let [login? (re-frame/subscribe [:login])]
     (if @login?
       (accountant/navigate! "/")
-      (re-frame/dispatch [:set-panel :login-panel]))))
+      (re-frame/dispatch [:set-panel :login-panel] ))))

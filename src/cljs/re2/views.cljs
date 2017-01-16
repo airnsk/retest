@@ -17,13 +17,15 @@
 
 [:div
    [ui/mui-theme-provider mui
+   [ui/paper {:style {:width 650 :margin 20 :padding 20}
+              :zDepth 3}
    [:div [:h2 "please login"]
    [:form
   [ui/text-field {:id "login"  :floatingLabelText "login"}]
   [ui/text-field {:id "password"  :floatingLabelText "password"}]
   [ui/raised-button {:label "Войти" :secondary true
 
-                      :on-touch-tap #(re-frame/dispatch [:http-login])}]]]]])
+                      :on-touch-tap #(re-frame/dispatch [:http-login])}]]]]]])
 
 
 (defn home-page []
