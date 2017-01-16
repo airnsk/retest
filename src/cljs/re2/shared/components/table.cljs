@@ -52,7 +52,7 @@ shadowColor fullBlack)
     ]
     [ui/table-row
     [ui/table-row-column [:a {:href "/"
-                              :onClick #(re-frame/dispatch [:Vanya])} "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
+                              :onClick #(re-frame/dispatch [:http-get-documents])} "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
 
     ]
 

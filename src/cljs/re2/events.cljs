@@ -51,6 +51,21 @@
      {:db  (assoc db :login false )
        :set-page "/login" })))
 
+(re-frame/reg-event-fx
+:http-get-documents
+(fn [{db :db} _]
+    {:http-xhrio {:method          :get
+                  ;;:params          {:login config/login :password config/password}
+                  :uri             (str utils/url_documents )
+                  :response-format (ajax/json-response-format {:keywords? true})
+                  :on-success      [:get-documents-data-success]
+                  :on-failure      [:get-documents-data-error]}
+     :db  (assoc db :loading? true)}))
+
+
+
+
+
 
 (re-frame/reg-event-fx
  :http-login
@@ -68,11 +83,22 @@
  :http-logout
  (fn [{db :db} _]
      {:http-xhrio {:method          :get
-                   :uri             (str config/uri "/account/logout")
+                   :uri             (str utils/uri "/account/logout")
                    :response-format (ajax/json-response-format {:keywords? true})
                    :on-success      [:logout-data]
                    :on-failure      [:logout-error]}
       :db  (assoc db :loading? true)}))
+
+
+
+(re-frame/reg-event-fx
+ :get-documents-data-success
+ (fn  [{rootdb :db} [_ data]]
+   (let [documentsdb (:documentsdb rootdb)
+        newdocdb (assoc documentsdb :documents-list data)]
+   {:db (assoc rootdb :documentsdb newdocdb :loading? false)
+
+    })))
 
 
 
