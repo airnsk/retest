@@ -16,7 +16,8 @@
   (let [login? (re-frame/subscribe [:login])
         page (re-frame/subscribe [:active-panel])]
     (if @login?
-      (re-frame/dispatch [:set-panel :main-panel])
+      (do (re-frame/dispatch [:set-panel :main-panel])
+          (re-frame/dispatch [:http-get-documents]))
       (accountant/navigate! "/login")
  )))
 

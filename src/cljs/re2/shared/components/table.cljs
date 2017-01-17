@@ -27,41 +27,46 @@ shadowColor fullBlack)
 )
 
 
-(defn vtable []
+(defn status [document]
+  (condp = (-> document
+                (:mainDocument)
+                (:detailsInfo)
+                (:label))
+  "B2B_SENT" [ui/icon-button {:style {:width 32 :height 32}} (ic/communication-call-made)]
+  "B2B_INBOX" [ui/icon-button {:style {:width 32 :height 32}} (ic/communication-call-received)]))
 
-(let [maintab (re-frame/subscribe [:maintab])]
+(defn contragents [document]
+  (for [comp (-> document
+                (:mainDocument)
+                (:recipients)
+                (:companies))]
+        (:name comp)))
 
-[:div {:style {:padding "10px" } }
-[ui/table {:style {  } :selectable false }
+(defn naimenovanie [document]
+  (-> document
+      (:mainDocument)
+      (:workflowInfo)
+      (:documentName)))
+
+(defn typedoc [document]
+  (-> document
+      (:mainDocument)
+      (:workflowInfo)
+      (:type)))
+
+(defn vktable [documents-list]
+  [:div {:style {:padding "10px" } }
+  [ui/table {:style {} :selectable false }
   [ui/table-header {:displaySelectAll false  :adjustForCheckbox false }
     [ui/table-row
-      [ui/table-header-column "IDD"] [ui/table-header-column "Name"] [ui/table-header-column "Status"]
-    ]]
+      [ui/table-header-column {:style {:width 10 :padding-left 5 :padding-right 5}} [ui/icon-button {:style {:width 32 :height 32}} (ic/action-swap-horiz)] ]
+       [ui/table-header-column {:style {:width 120}} "Наименование"]
+        [ui/table-header-column {:style {:width 70}}"Контрагенты"]
+         [ui/table-header-column {:style {:width 100}} "Тип документа"]]]
     [ui/table-body {:displayRowCheckbox false}
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
-    [ui/table-row
-    [ui/table-row-column [:a {:href "/login" } "login href"] ] [ui/table-row-column @maintab] [ui/table-row-column "1"]
-
-    ]
-    [ui/table-row
-    [ui/table-row-column [:a {:href "/"
-                              :onClick #(re-frame/dispatch [:http-get-documents])} "main href"] ] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
-
-
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]
-    [ui/table-row
-    [ui/table-row-column "1"] [ui/table-row-column "1"] [ui/table-row-column "1"]
-
-    ]]]] ))
+      (for [document (:documents documents-list)]
+        ^{:key (:id document)}[ui/table-row
+          [ui/table-row-column {:style {:width 10 :padding-left 5 :padding-right 5}} (status document)]
+           [ui/table-row-column {:style {:width 120 } } (naimenovanie document)]
+            [ui/table-row-column {:style {:width 70}} (contragents document)]
+              [ui/table-row-column {:style {:width 100}} (typedoc document) ]])]]])

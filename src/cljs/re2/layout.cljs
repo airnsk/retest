@@ -8,15 +8,11 @@
             [re2.controllers :as controllers]
             ))
 
-
-
-
 (defn main-layout []
   (let [page (re-frame/subscribe [:active-panel])]
     (fn []
-      (println (str " now" @page ))
       (condp = @page
           :main-panel [views/main-view]
-          :login-panel [views/login-view "Vasya"]
+          :login-panel [views/login-view]
           :logout-panel [views/login-view]
           ))))

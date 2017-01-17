@@ -18,7 +18,8 @@
  :set-page
  (fn [page]
       ;; we don't bother with that nil value
-    (accountant/navigate! page)))
+    (accountant/navigate! page)
+    ))
 
 (re-frame/reg-fx
  :GryaznyVanya
@@ -52,15 +53,15 @@
        :set-page "/login" })))
 
 (re-frame/reg-event-fx
-:http-get-documents
-(fn [{db :db} _]
-    {:http-xhrio {:method          :get
-                  ;;:params          {:login config/login :password config/password}
-                  :uri             (str utils/url_documents )
-                  :response-format (ajax/json-response-format {:keywords? true})
-                  :on-success      [:get-documents-data-success]
-                  :on-failure      [:get-documents-data-error]}
-     :db  (assoc db :loading? true)}))
+  :http-get-documents
+  (fn [{db :db} _]
+      {:http-xhrio {:method          :get
+                    ;;:params          {:login config/login :password config/password}
+                    :uri             (str utils/url_documents )
+                    :response-format (ajax/json-response-format {:keywords? true})
+                    :on-success      [:get-documents-data-success]
+                    :on-failure      [:get-documents-data-error]}
+       :db  (assoc db :documents-loading? true)}))
 
 
 
@@ -96,10 +97,17 @@
  (fn  [{rootdb :db} [_ data]]
    (let [documentsdb (:documentsdb rootdb)
         newdocdb (assoc documentsdb :documents-list data)]
-   {:db (assoc rootdb :documentsdb newdocdb :loading? false)
+   {:db (assoc rootdb :documentsdb newdocdb :documents-loading? false)
 
     })))
+(re-frame/reg-event-fx
+ :get-documents-data-error
+ (fn  [{rootdb :db} [_ data]]
+   (let [documentsdb (:documentsdb rootdb)
+        newdocdb (assoc documentsdb :documents-list {} :error-data data)]
+   {:db (assoc rootdb :documentsdb newdocdb :documents-loading? false)
 
+    })))
 
 
 

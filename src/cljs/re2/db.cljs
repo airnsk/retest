@@ -8,4 +8,6 @@
   :active-panel :login-panel
   :maintab "documents"
   :logindb {:login-data ""}
-  :Vasya ""})
+  :Vasya ""
+  :documentsdb {}
+  :documents-loading? false})

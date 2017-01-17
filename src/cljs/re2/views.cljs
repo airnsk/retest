@@ -5,8 +5,7 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.shared.component.table :as vkotable]
-              ))
+              [re2.shared.component.table :as vkotable] ))
 
 
 (def mui
@@ -14,10 +13,9 @@
                                          :primary1-color (color :deep-orange-a100)
                                          :secondary1-color (color :blue200) }})})
 
-(defn login-view [url]
+(defn login-view []
 
 [:div
-  [:p url]
    [ui/mui-theme-provider mui
    [ui/paper {:style {:width 650 :margin 20 :padding 20}
               :zDepth 3}
@@ -53,7 +51,7 @@
   [:div [:a {:href "/"} "go to the home page"]]])
 
 
-(defn template-page []
+(defn main-view []
   [:div
   [ui/mui-theme-provider
    {:mui-theme (get-mui-theme
@@ -77,22 +75,4 @@
       ]
     ]
     [:div {:style {}}
-    [vkotable/vtable] ]
-    [:div "Hello"]
-    [ui/mui-theme-provider
-     {:mui-theme (get-mui-theme {:palette {:text-color (color :blue200)}})}
-     [ui/raised-button {:label "Blue button"}]]
-    (ic/action-home {:color (color :grey600)})
-    [ui/raised-button {:label        "Click me"
-                        :icon         (ic/social-group)
-                        :secondary false
-                        :on-touch-tap #(re-frame/dispatch [:http-login])}]]]])
-
-
-(defn main-view []
-
-  (let [name (re-frame/subscribe [:name])]
-
-      [:div "Hello from " @name
-      [:div [template-page]]]
-      ))
+    [vkotable/vktable @(re-frame/subscribe [:documents-list])] ] ]]])

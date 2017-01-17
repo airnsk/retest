@@ -24,3 +24,8 @@
   :maintab
     (fn [db]
       (:maintab db)))
+
+(re-frame/reg-sub
+  :documents-list
+    (fn [db]
+      (:documents-list (:documentsdb db))))
