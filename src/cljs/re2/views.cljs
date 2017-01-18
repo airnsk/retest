@@ -5,7 +5,7 @@
               [cljs-react-material-ui.core :refer [get-mui-theme color]]
               [cljs-react-material-ui.reagent :as ui]
               [cljs-react-material-ui.icons :as ic]
-              [re2.shared.component.table :as vkotable] ))
+              [re2.shared.components.table :as vkotable] ))
 
 
 (def mui
