@@ -140,3 +140,61 @@
          {:db (assoc rootdb :logindb newlogindb :loading? false)
           :dispatch [:login true]
           :set-page "/login"})))
+
+
+
+
+(re-frame/reg-event-fx
+ :change-cladr
+ (fn [{rootdb :db} [_ data value]]
+   (let [cladrdb (:cladrdb rootdb)]
+   (condp = data
+     :region  (let [newcladrdb (associn cladrdb  :region {:value value} :raion {} :gorod {} :ulica {} :dom {})]
+                    {:db (assoc rootdb   newcladrdb )
+                     :dispatch [:http-cladr {"0" {"value" value} "go" "0"}]})
+
+     :raion (let [newcladrdb (assoc cladrdb :raion {} :gorod {} :ulica {} :dom {})]
+                    {:db (assoc rootdb :cladrdb newcladrdb )
+                     :dispatch [:http-cladr {"0" {"code" (:cod (:region cladrdb))}
+                                             "1" {"value" value} "go" "1"}]})
+
+     :gorod (let [newcladrdb (assoc cladrdb :gorod {} :ulica {} :dom {})]
+                   {:db (assoc rootdb :cladrdb newcladrdb )
+                    :dispatch [:http-cladr {"0" {"code" (:cod (:region cladrdb))}
+                                            "1" {"code" (:cod (:raion cladrdb))}
+                                            "2" {"value" value} "go" "2"}]})
+
+     :ulica (let [newcladrdb (assoc cladrdb :ulica value :dom {})]
+                    {:db (assoc rootdb :cladrdb newcladrdb )
+                     :dispatch [:http-cladr {"0" {"code" (:cod (:region cladrdb))}
+                                             "1" {"code" (:cod (:raion cladrdb))}
+                                             "2" {"code" (:cod (:gorod cladrdb))}
+                                             "3" {"value" value} "go" "3"}]})
+
+     :dom (let [newcladrdb (assoc cladrdb :dom value)]
+                   {:db (assoc rootdb :cladrdb newcladrdb )
+                    :dispatch [:http-cladr {"0" {"code" (:cod (:region cladrdb))}
+                                            "1" {"code" (:cod (:raion cladrdb))}
+                                            "2" {"code" (:cod (:gorod cladrdb))}
+                                            "3" {"code" (:cod (:ulica cladrdb))}
+                                            "4" {"value" value} "go" "4"}]})
+
+
+
+
+                    ))))
+
+
+(re-frame/reg-event-fx
+ :http-cladr
+ (fn [{db :db} [_ value]]
+   (let [cladrdb (:cladrdb db)]
+   (println value)
+     {:http-xhrio {:method          :post
+                   :params          value
+                   :uri             (str utils/uri-cladr )
+                   :format          (ajax/json-request-format )
+                   :response-format (ajax/json-response-format {:keywords? true})
+                   :on-success      [:cladr-data]
+                   :on-failure      [:cladr-error]}
+      :db  (assoc db :loading? true)})))

@@ -5,6 +5,7 @@
 
 
 (def uri "https://integrationb2b.iitrust.ru/edi")
+(def uri-cladr "https://test.iitrust.lk/api/kladr")
 (def url_documents "https://integrationb2b.iitrust.ru/edi/documents")
 
 (comment

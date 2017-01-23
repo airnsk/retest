@@ -28,3 +28,7 @@
     (if @login?
       (accountant/navigate! "/")
       (re-frame/dispatch [:set-panel :login-panel] ))))
+
+(defn cladr-page []
+
+      (re-frame/dispatch [:set-panel :cladr-panel] ))

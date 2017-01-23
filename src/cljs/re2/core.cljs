@@ -19,6 +19,10 @@
 (secretary/defroute "/login" []
   (controllers/login-page))
 
+
+(secretary/defroute "/cladr" []
+  (controllers/cladr-page))
+
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
   (reagent/render   [layout/main-layout ]
@@ -28,7 +32,6 @@
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
   (utils/dev-setup)
-  (utils/check-auth)
   (accountant/configure-navigation!)
   (accountant/dispatch-current!)
   (mount-root)

@@ -53,6 +53,7 @@
                     :source-map-timestamp true
                     :preloads             [devtools.preload
                                           ]
+                    :parallel-build true
                     :external-config      {:devtools/config {:features-to-install :all}}
                     }}
 

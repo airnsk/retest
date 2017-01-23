@@ -14,5 +14,5 @@
       (condp = @page
           :main-panel [views/main-view]
           :login-panel [views/login-view]
-          :logout-panel [views/login-view]
+          :cladr-panel [views/cladr-view]
           ))))
